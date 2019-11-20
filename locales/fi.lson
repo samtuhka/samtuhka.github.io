@@ -1,0 +1,387 @@
+'Speed': 'Nopeus'
+'km/h': 'km/h'
+'Time': 'Aika'
+'s': 's'
+
+'Glances': 'Katseet'
+
+'Run the light': 'Aja punaista päin'
+'(Just this once)': '(Vain tämän kerran)'
+
+'Passed': 'Hyväksytty suoritus'
+'Passed!': 'Hyväksytty suoritus'
+'Done': 'Suoritettu'
+
+'Oops!': 'Oho!'
+'You ran the red light!': 'Ajoit punaista päin!'
+'You ran the stop sign!': 'Et pysähtynyt ennen stop-merkkiä!'
+'You crashed!': 'Törmäys!'
+'You steered off the course': 'Ajoit ulos tieltä'
+
+
+
+'%runTheLight.intro': """<p>Tästä eteenpäin sinun tulee noudattaa liikennevaloja,
+			mutta aja tämän kerran punaista päin, jotta tiedät mitä
+			siitä seuraa.</p>
+
+			<p>Paina ratin oikeanpuoleista punaista nappia, kun olet valmis.</p>
+			"""
+'%fixSwitch.title': 'Pysy tiellä'
+'%fixSwitchPrac.title': 'Pysy tiellä (harjoittelu)'
+'%fixSwitch.intro': """
+	<p>Tehtävänäsi on pysyä (nyt näkymättömällä) tiellä.
+	<p>Jos auto ei ole tiellä, peli alkaa soittamaan varoitusääntä kunnes palaat tielle.
+	<p>Tien pinnalla näkyy harmaita merkkejä. 
+	<p>Ajettava rata on sama kuin harjoitteluissa. </p>"""
+'%fixSwitchPrac.intro': """
+	<p>Tehtävänäsi on pysyä tiellä.
+	<p>Jos auto ei ole tiellä, peli alkaa soittamaan varoitusääntä kunnes palaat tielle.
+	<p>Tien pinnalla näkyy harmaita merkkejä.
+	<p> Myöhemmin kokeessa tiestä näkyy ainoastaan nämä merkit (eli valkoinen tie on hävitetty)
+	<p>Ajettava rata pysyy koko kokeen ajan samana (ensimmäisen mutkan suunta voi vaihdella).
+	"""
+
+'%runTheLight.outro': """Tästä eteenpäin suoritus hylätään, jos ajat punaista päin."""
+
+'Close the gap': 'Ahdas pysäköinti'
+'%closeTheGap.intro': """Tässä tehtävässä tutustutaan auton ulottuvuuksiin. Aja mahdollisimman
+			lähelle edelläolevaa autoa, mutta älä kuitenkaan törmää. Kun olet niin lähellä
+			kuin tunnet törmäämättäsi pääsevän, sammuta auto painamalla ratin oikeanpuoleista
+			punaista nappia.
+			"""
+'%closeTheGap.outro': ({distance}) ->
+	"Pysäköit #{(distance*100).toFixed 1} senttimetrin päähän."
+
+'Throttle and brake': 'Kiihdytys ja jarrutus'
+'%throttleAndBrake.intro': """Tutustutaan auton ominaisuuksiin. Ylitä maaliviiva mahdollisimman lyhyessä ajassa,
+			mutta älä aja päin punaisia ja pysähdy ennen stop-merkkiä.
+			"""
+
+'%throttleAndBrake.outro': ({time}) -> "Aikasi oli <strong>#{time.toFixed 2}</strong> sekuntia."
+
+'Stay on lane': 'Pysy kaistalla'
+'%stayOnLane.intro': """Tutustutaan auton ominaisuuksiin. Ylitä maaliviiva mahdollisimman lyhyessä ajassa,
+			mutta älä aja päin punaisia ja pysähdy ennen stop-merkkiä. Väistä myös tiellä olevat
+			esteet, mutta pysy kaistallasi. Kaistavahti varoittaa äänimerkillä, jos olet lähellä ajautua
+			kaistan ulkopuolelle.
+			"""
+
+'%stayOnLane.outro': ({time}) -> "Aikasi oli <strong>#{time.toFixed 2}</strong> sekuntia."
+
+'You drove out of your lane.': 'Ajoit ulos kaistaltasi.'
+
+'Speed control': 'Nopeuden hallinta'
+'%speedControl.intro':  """
+	<p>Aja niin nopeasti kuin pystyt, mutta noudattaen nopeusrajoituksia.
+	Ylinopeuden ajamisesta kerääntyy aikasakkoa.
+	"""
+'Penalty': 'Aikasakko'
+'Speed limit': 'Nopeusrajoitus'
+
+'%speedControl.outro': ({time, timePenalty}) -> """
+	<p>Ajoit radan #{time.toFixed 2} sekunnissa, mihin lisätään
+	#{timePenalty.toFixed 2} sekuntia aikasakkoa ylinopeudesta.
+
+	<p>Kokonaisaikasi oli <strong>#{(timePenalty + time).toFixed 2}</strong> sekuntia.
+	"""
+
+'%blinderIntro': """
+	<p>Tässä tehtävässä mitataan myös ennakointikykyäsi laskemalla, kuinka usein
+	joudut katsomaan tietä. Tie tulee hetkeksi näkyviin, kun painat vasemmanpuoleista
+	liipasinta. Yritä suorittaa tehtävä mahdollisimman hyvin, mutta käyttämällä mahdollisimman
+	vähän katseita.
+	"""
+
+'Anticipatory speed control': 'Ennakointi nopeudenhallinnassa'
+
+'%forcedBlinderIntro': """
+	<p>Tässä tehtävässä mitataan myös kykyäsi toimia häirinnän alaisena. Tienäkymä peittyy
+	hetkittäin.
+	"""
+
+'%blindSpeedControl.intro': -> """
+	<p>#{@ '%speedControl.intro'}
+	#{@ '%blinderIntro'}
+	"""
+
+'Supermiler': 'Taloudellinen ajo'
+
+
+'%followInTraffic.intro': """
+	<p>Aja siten, että polttoaineenkulutuksesi on mahdollisimman pieni.</p>
+
+	<p>Pyri ajotyyliin, joka tasapainottaa seuraavat tekijät:</p>
+	<ul>
+	<li>Edelläolevaa lähellä ajaminen vähentää kulutusta ilmanvastuksen
+	vähenemisen ansiosta.
+	<li>Jarruttaminen lisää kokonaiskulutusta, koska joudut kiihdyttämään
+	menetetyn nopeuden takaisin.
+	<li>Auto käyttää jonkin verran polttoainetta myös muuhun kuin etenemiseen,
+	joten etenemisen kannattaa olla mahdollisimman ripeää.
+	</ul>
+
+	<p>Tässä tehtävässä ei ole nopeusrajoituksia.</p>
+	"""
+
+'Draft saving': 'Ilmanvastussäästö'
+'Average consumption': 'Keskikulutus'
+'Current consumption': 'Hetkellinen kulutus'
+
+'%followInTraffic.outro': ({consumption}) ->
+	"Kulutuksesi oli #{consumption.avgLitersPer100km!.toFixed 2} l/100km."
+
+'Anticipating supermiler': 'Taloudellinen ennakoiva ajo'
+
+'%blindFollowInTraffic.intro': -> """
+	<p>#{@ '%followInTraffic.intro'}
+	#{@ '%blinderIntro'}
+	"""
+
+'Distracted supermiler': 'Taloudellinen ajo ja rajattu näkyvyys'
+
+'%forcedBlindFollowInTraffic.intro': -> """
+	<p>#{@ '%followInTraffic.intro'}
+	#{@ '%forcedBlinderIntro'}
+	"""
+
+'Next': 'Seuraava'
+'Previous': 'Edellinen'
+'I wish to participate': 'Haluan osallistua kokeeseen'
+
+'Ready': 'Kalibraatio valmis'
+
+'Welcome to the experiment': 'Tervetuloa kokeeseen!'
+'%intro.introduction': """
+<p>Tämän kokeen tarkoituksena on tutkia silmänliikkeitä ohjaustehtävässä.
+
+<p>Koe koostuu useasta osatehtävästä,
+jotka esitellään kokeen edetessä. Koe kestää kokonaisuudessaan korkeintaan tunnin.
+Voit kysyä kokeenjohtajalta lisätietoa sinulle epäselvistä asioista milloin tahansa.
+"""
+
+'Participation is voluntary': 'Osallistuminen on vapaaehtoista'
+'%intro.participantRights': """<p>Kokeeseen osallistuminen on vapaaehtoista.
+Voit halutessasi peruuttaa tai keskeyttää osallistumisesi tai kieltäytyä pyydetystä
+toiminnasta missä vaiheessa tahansa.
+"""
+
+'Collection and use of data': 'Tietojen keräys ja käyttö'
+"%intro.dataUse": """
+<p>Kokeessa kerätään tietoja suorituksestasi. Tietoja ja niistä saatuja
+tutkimustuloksia käytetään tieteelliseen raportointiin (esim. julkaisuihin)
+sellaisessa muodossa, joissa henkilöllisyyttäsi ei voi tunnistaa.
+"""
+'I accept the usage of my data': 'Hyväksyn tietojeni käytön'
+
+'Background information': 'Taustatiedot'
+'%intro.backgroundInfo': """
+<p>Seuraavaksi kysymme joitakin perustietoja sinusta.
+Jos et halua antaa kysymäämme tietoa, voit jättää kyseisen
+kentän tyhjäksi.
+"""
+
+'E-mail address': 'Sähköpostiosoite'
+'%intro.email': """Kysymme sähköpostiosoitettasi, koska saatamme pyytää sinulta lisätietoja
+tai osallistumista jatkokokeeseen. Sähköpostiosoitettasi ei luovuteta ulkopuolisille, eikä
+siihen lähetetä tähän kokeeseen liittymätöntä viestintää."""
+
+'Birth year': 'Syntymävuosi'
+
+'Gender': 'Sukupuoli'
+'Female': 'Nainen'
+'Male': 'Mies'
+
+'Driving license year': 'Kuljettajatutkinnon suoritus'
+'%intro.license': """Anna vuosi, jona olet saanut B-luokan ajo-oikeuden (henkilöauto).
+Jos sinulla ei ole kyseisen luokan ajo-oikeutta, jätä kenttä tyhjäksi. Tiedot löytyvät
+ajokortin kääntöpuolelta."""
+
+'Past year driving': 'Viimeisen vuoden ajaminen'
+"On average, how frequently have you driven during the <strong>past year</strong>.": """
+Mikä seuraavista vastaa parhaiten sitä, kuinka usein olet ajanut keskimäärin
+<strong>viimeisen vuoden aikana</strong>.
+"""
+
+'Most days': 'Useimpina päivinä'
+'Most weeks': 'Useimpina viikkoina'
+'Most months': 'Useimpina kuukausina'
+'Few times a year': 'Joitakin kertoja vuodessa'
+'Not at all': 'En lainkaan'
+
+'Lifetime driving': 'Ajohistoria'
+"On average, how frequently have you driven <strong>since you got your driver's license</strong>.": """Mikä seuraavista vastaa parhaiten sitä, kuinka usein olet ajanut keskimäärin
+<strong>ajokortin saatuasi</strong>."""
+
+'Past 12 month kilometrage': 'Ajokilometrit viimeisten 12 kk aikana'
+"Give out an estimate on how many kilometres have you driven during the past 12 months.": """Anna arviosi siitä,montako ajokilometriä olet ajanut viimeisen 12 kuukauden aikana."""
+'not driven': 'en yhtään'
+
+'Lifetime kilometrage': 'Ajokilometrit eliniän aikana'
+"Give out an estimate on how many kilometres have you driven during your lifetime.": """Anna arviosi siitä, montako ajokilometriä olet ajanut koko elämäsi aikana."""
+
+'Video games': 'Tietokonepelaaminen'
+"How frequently do you play video games?": """Kuinka usein pelaat tietokonepelejä?"""
+'I have played, but not anymore': 'Olen pelannut, mutta en tätä nykyä.'
+
+'%circleDriving.intro2ColorRev': """
+   		 	<p>Valkoisten ruutujen sisään ilmestyy välillä näkyviin värillisiä kolmioita. Kolmiot ovat joko kaikki sinisiä tai yksi niistä on punainen. Jos havaitset punaisen kolmion, paina ratin vasemmanpuoleista takapainiketta. Jos et havaitse sitä, paina ratin oikeanpuoleista takapainiketta.
+ 			<p>Jos et ole varma, arvaa.
+   		 	<p>Kolmiot ovat näkyvillä ruudulla vain hetken, mutta voit vastata vaikka kolmiot olisivat ehtineet jo kadota. Vastausaikaa on muutaman sekunnin ajan, kunnes uudet kolmiot taas ilmestyvät. Jos et ehdi vastata, jatka ajamista normaalisti ja koeta vastata seuraavilla kerroilla.
+   		 	<p>Ohjeista poistuttuasi, koe lähtee liikkeelle painamalla ratin oikeaa punaista painiketta.
+   		 	<table class="centered-table" style="width: 100%">
+            <tr><th>Vasen</th><th>Oikea</th></tr>
+            <tr>
+            <td class="leftStim"></td>
+            <td class="rightStim"></td>
+            </table>
+			"""
+
+'Circle driving': 'Mutkassa ajo'
+'Dark driving' : 'Ärsykkeen tunnistaminen'
+
+'Calibration': 'Silmänliikekameran kalibraatio'
+'%calib.inst1' : """
+			<p>Seuraavaksi kalibroidaan silmänliikekamera. Ota mukava asento ja katso kuvaruudun keskelle. Yritä olla liikuttelematta päätä kalibraation aikana.
+			<p>Ruudulle ilmestyy yksi kerrallaan maalitauluja, joita sinun pitää katsoa.
+            <p>Pidä katse kiinni maalitaulun keskelle ilmestyvässä vihreässä pisteessä. Yritä olla räpsyttelemättä kun katsot vihreää pistettä.
+			"""
+
+'%calib.inst2' : """
+			<p>Kalibroidaan silmänliikekamera uudestaan. Kuten aikasemmin, ota mukava asento ja katso kuvaruudun keskelle. Yritä olla liikuttelematta päätä kalibraation aikana.
+			<p>Ruudulle ilmestyy yksi kerrallaan maalitauluja, joita sinun pitää katsoa.
+            <p>Pidä katse kiinni maalitaulun keskelle ilmestyvässä vihreässä pisteessä. Yritä olla räpsyttelemättä kun katsot vihreää pistettä.
+			"""
+
+'%calib.inst3' : """
+			<p>Tarkistetaan silmänliikekameran kalibraatio.
+			<p>Kuten kalibraatiossa, pidä katse kiinni maalitaulun keskelle ilmestyvässä vihreässä pisteessä. 
+			"""
+
+'Dark driving practice': 'Ärsykkeen tunnistaminen (harjoittelu)'
+"Circle driving practice": 'Mutkassa ajo (harjoittelu)'
+
+'%darkDriving.intro': """
+			<p>Ruudulla on näkyvissä musta ympyrä, jonka ympärillä on valkoisia ruutuja. <strong>Pyri koko kokeen ajan pitämään katse ympyrän sisällä.</strong>
+			"""
+
+'%circleDriving.intro': """
+			<p>Tehtävä on sama kuin äsken. Kun havaitet ääreisnäölläsi oikealle ylöspäin osoittavan E-kirjaimen, paina ratin oikeaa takapainiketta.
+			<p>Mutta nyt lisäksi käytät ohjauspyörää ohjaamiseen. Polkimia ei käytetä, nopeus säätyy automaattisesti.
+			<p>Tehtävänä on siis havaita kohteet ääreisnäöllä ja samalla pysyä tiellä. Jos auto ei ole tiellä, peli alkaa soittamaan varoitusääntä kunnes palaat tielle.
+			<p>Muista pitää katse koko ajan ympyrän sisällä! Silmänliikekamera rekisteröi, jos "fuskasit" katsomalla kohdetta suoraan.
+			"""
+'%circleDriving.intro2': """
+   		 	<p>Ruutujen  sisään ilmestyy välillä näkyviin eri suuntiin orientoituneita E-kirjainta esittäviä kuvioita.
+   		 	<p>Tehtäväsi on havaita oikealle-ylös osoittava E-kuvio (katso alhaalla oikealla oleva ruutu) käyttäen ääreisnäköä. Kuvio voi ilmestyä mihin tahansa ruutuun. Aina jos havaitset tämän oikealle-ylös osoittavan E-kuvion, paina ratin oikeanpuoleista takapainiketta.
+   		 	<p>Muista pitää katse koko ajan ympyrän sisällä! Silmänliikekamera rekisteröi jos "fuskasit" katsomalla kohdetta suoraan.
+			"""
+
+'%circleDriving.afterintro': """
+			<p>Kun havaitet ääreisnäölläsi oikealle ylöspäin osoittavan E-kirjaimen, paina ratin oikeaa takapainiketta.
+			<p>Lisäksi käytät ohjauspyörää ohjaamiseen. Polkimia ei käytetä, nopeus säätyy automaattisesti.
+			<p>Tehtävänä on siis havaita kohteet ääreisnäöllä ja samalla pysyä tiellä. Jos auto ei ole tiellä, peli alkaa soittamaan varoitusääntä kunnes palaat tielle.
+			<p>Muista pitää katse koko ajan ympyrän sisällä! Silmänliikekamera rekisteröi, jos "fuskasit" katsomalla kohdetta suoraan.
+			"""
+'%darkDriving.pracintro': """
+						<p>Tehtävä on sama kuin äsken. Tehtäväsi on havaita oikealle-ylös osoittava E-kuvio käyttäen ääreisnäköä.
+        				<p>Muista pitää katse koko ajan ympyrän sisällä! Silmänliikekamera rekisteröi, jos "fuskasit" katsomalla kohdetta suoraan.
+        				"""
+
+'%darkDriving.afterintro': """
+						<p>Tehtäväsi on havaita oikealle-ylös osoittava E-kuvio käyttäen ääreisnäköä.
+						<p>Muista pitää katse koko ajan ympyrän sisällä! Silmänliikekamera rekisteröi, jos "fuskasit" katsomalla kohdetta suoraan.
+						"""
+
+'%circleDriving.intro3': """
+			   	<p>Pyri vastaamaan mahdollisimman nopeasti. Kuviot ovat näkyvillä ruudulla vain pienen hetken ajan.
+			   	<p>Voit vastata vaikka kuvion olisivat ehtineet jo kadota. Vastausaikaa on muutaman sekunnin verran, kunnes uudet kuviot taas ilmestyvät. Jos et ehdi vastata, jatka tehtävää normaalisti ja koeta vastata seuraavilla kerroilla.
+               	<p>Ohjeista poistuttuasi, koe lähtee liikkeelle painamalla ratin oikeaa punaista painiketta.
+               	"""
+
+
+'%circleDriving.intro2Rev': """
+   		 	<p>Ruutujen  sisään ilmestyy välillä näkyviin eri suuntiin orientoituneita E-kirjainta esittäviä kuvioita. Tehtäväsi on havaita oikealle-ylös osoittava E-kuvio (katso alin ruutu), jos sellainen on näkyvillä. Aina jos havaitset ylöspäin osoittavan E-kuvion, paina ratin oikeanpuoleista takapainiketta.
+   		 	<p>Kuviot ovat näkyvillä ruudulla vain pienen hetken, mutta voit vastata vaikka kuvion olisivat ehtineet jo kadota. Vastausaikaa on muutaman sekunnin ajan, kunnes uudet kuviot taas ilmestyvät. Jos et ehdi vastata, jatka ajamista normaalisti ja koeta vastata seuraavilla kerroilla.
+   		 	<p>Ohjeista poistuttuasi, koe lähtee liikkeelle painamalla ratin oikeaa punaista painiketta.
+			"""
+'Driving games': 'Ajopelit'
+"How frequently do you play driving games? (e.g. Gran Turismo)": """Kuinka usein pelaat ajopelejä? (esim. Gran Turismo)"""
+
+
+'The experiment is done!': 'Koe on päättynyt'
+'%experimentOutro': 'Kiitos osallistumisestasi!'
+
+'Find the direction': 'Löydä suunta'
+'%pursuitDiscrimination.intro': """
+<p>Seuraa katseellasi ruudulla näkyvää kohdetta. Kohteessa
+välähtää ristitähtäimen jälkeen viivakuvion, jonka kallistuksen
+suuntaus sinun pitää yrittää tunnistaa. Viivakuvion välähdyksen jälkeen
+näet kysymysmerkin: paina tällöin vasenta- tai oikeaa nuolinäppäintä
+sen mukaan, mikä on paras arvauksesi siitä, kumpaan suuntaan kuvio
+on kallellaan</p>
+<table class="centered-table" style="width: 100%">
+<tr><th>Vasen</th><th>Oikea</th></tr>
+<tr>
+<td class="leftStim"></td>
+<td class="rightStim"></td>
+</table>
+"""
+
+"%blindPursuit.totalScore": ({score}) ->
+	"<p>Kokonaistuloksesi on #{score.toFixed 1}%.</p>"
+
+"%blindPursuit.finalScore": ({score}) ->
+	"<p>Lopullinen tuloksesi on #{score.toFixed 1}%.</p>"
+
+'%introBlindPursuit.introduction': """
+<p>Tämän kokeen tarkoituksena on tutkia havaintotarkkuutta ja
+ennakoivia silmänliikkeitä.
+
+<p>Koe koostuu useasta osatehtävästä,
+jotka esitellään kokeen edetessä. Koe kestää kokonaisuudessaan noin tunnin.
+Voit kysyä kokeenjohtajalta lisätietoa sinulle epäselvistä asioista milloin tahansa.
+
+<p>Kokeen vastuullisena tutkijana toimii prof. Heikki Summala.
+"""
+
+'Possible eye strain': 'Koe saattaa väsyttää silmiä'
+'%introBlindPursuit.eyeStrain': """
+<p>Kokeen tehtävissä tehdään toistuvia silmänliikkeitä
+ja seurataan kohdetta yhtäjaksoisesti useita minuutteja.
+Tämä saattaa aiheuttaa väsymystä silmissä.
+
+<p>Ilmoita välittömästi kokeen johtajalle, jos silmissäsi
+alkaa tuntua kipua tai ne alkavat rasittua.
+"""
+
+'Relaxation and sound response': 'Rentoutuminen ja vaste ääniärsykkeeseen'
+'Notification sound': 'Merkkiääni'
+'Play the notification sound': 'Soita merkkiääni'
+
+'%soundSpook.notificationSound': """
+Kokeen aikana sinua tullaan pyytämään ajoittain sulkemaan silmäsi
+ja rentoutumaan. Kun kuulet merkkiäänen ensimmäisen kerran, sulje
+silmäsi. Pidä silmäsi suljettuna, kunnes kuulet merkkiäänen uudelleen.
+"""
+
+'Noise sound': 'Ääniärsyke'
+
+'%soundSpook.noiseSound': """
+Rentutumisen aikana soitetaan ajoittain ääniärsyke. Tällä mitataan,
+miten hermostosi reagoi äkkinäisiin tapahtumiin. Pyydämme, että
+yrität pysyä liikkumatta, vaikka säikähtäisit ärsykettä.
+"""
+
+'Play the noise sound': 'Soita ääniärsyke'
+
+
+'%soundSpook.instruction': """
+Sulje silmäsi, kun kuulet merkkiäänen ja pidä ne suljettuna, kunnes
+kuulet merkkiäänen uudelleen. Pyri rentoutumaan ja olla ajattelematta
+aktiivisesti mitään; yritä pitää mielesi mahdollisimman tyhjänä. Pyri
+olemaan reagoimatta millään tavoin ääniärsykkeisiin.
+"""
+
+'Please keep your eyes closed': 'Pidä silmäsi suljettuna kunnes kuulet merkkiäänen.'
+
+'Round done': 'Kierros suoritettu'

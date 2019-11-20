@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>The Busy Tailgater</title>
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.css">
+		<template id="launch-dynamic">
+		<script src="node_modules/systemjs/dist/system.src.js"></script>
+		<script src="node_modules/system-npmlocator/npmlocator.js"></script>
+		<script>
+			System.import('./config.js')
+			.then(function (config) {
+				config(System);
+				System.import('./ui-main.ls');
+			});
+		</script>
+		<script id="vertexShader" type="x-shader/x-vertex">
+
+			uniform vec2 uvScale;
+			varying vec2 vUv;
+			varying float vAlpha;
+			uniform vec2 resolution;
+			varying vec4 v;
+
+			void main()
+			{	
+
+				vUv = (uv*2.0 - 1.0);
+				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0);
+				gl_Position = projectionMatrix * mvPosition;
+				v = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+				v.x = v.x / v.z;
+				v.y = v.y / v.z;
+
+			}
+
+		</script>
+		<script id="fragmentShader" type="x-shader/x-fragment">
+
+			varying vec2 vUv;
+			uniform float time;
+			uniform float cycles;
+			varying vec3 vNormal;
+			varying vec4 v;
+			uniform float trans;
+
+
+			void main()	{
+
+				vec2 position = vUv;
+
+				float x = position.x;
+				float y = position.y;
+				float pi = 3.141592653589793;
+				float d = sqrt(x*x + y*y);
+				float v = (cos(x*cycles*pi) + 1.0)/2.0;
+				float v2 = cos(d * pi/2.0);
+				if (d >= 1.0) {
+					v2 = 0.0;
+				}
+				gl_FragColor = vec4(0.7,0.7,0.7,max(min(0.7 - d - trans, 1.0), 0.0));
+			}
+		</script>
+
+		<script id="fragmentShaderRoad" type="x-shader/x-fragment">
+
+			varying vec2 vUv;
+			uniform float time;
+			varying vec3 vNormal;
+			varying vec4 v;
+
+
+			void main()	{
+
+				vec2 position = vUv;
+
+				float x = position.x;
+				float y = position.y;
+				float d = abs(y*y);
+				gl_FragColor = vec4(1.0,1.0,1.0,max(min(1.0 - d, 1.0), 0.0));
+			}
+		</script>
+
+
+		</template>
+		<template id="launch-static">
+		<script src="ui-main.ls.js"></script>
+		</template>
+		<script type="text/javascript">
+			var template = "#launch-static";
+			if(document.location.protocol == "file:") {
+				template = "#launch-dynamic";
+			}
+			template = document.querySelector(template);
+			document.write(template.innerHTML);
+		</script>
+		<style type="text/css">
+			body, html {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				overflow: hidden;
+				color: white;
+				background-color: black;
+			}
+			
+			canvas {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.fillScreen {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+				font-size: 16pt;
+				background-color: black;
+			}
+
+			#loopviz {
+				width: 300px;
+				height: 300px;
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				z-index: 10;
+				
+				/*display: none;*/
+			}
+			
+			#scoreHud {
+				z-index: 20;
+				padding: 10px;
+				position: fixed;
+				bottom: 10%;
+				right: 30%;
+				background-color: black;
+				color: white;
+				display: block;
+			}
+
+			#blinder {
+				z-index: 10;
+				background-color: black;
+			}
+
+			.instructions {
+				font-size: x-large;
+			}
+
+			#outro {
+			}
+			
+			#outro > .centered {
+				width: 500px;
+				margin: auto;
+			}
+
+			.notifications {
+				display: flex;
+				flex-direction: column-reverse;
+				position: absolute;
+				width: 10cm;
+				left: 5%;
+				top: 10%;
+				bottom: 10%;
+			}
+
+			.overlay-screen {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.5);
+				z-index: 100;
+				color: white;
+				padding-top: 100px;
+			}
+
+			.overlay-content {
+				margin-left: auto;
+				margin-right: auto;
+				max-width: 15cm;
+			}
+
+			.notification {
+				background-color: rgba(0, 0, 0, 0.5);
+				border: 2px solid rgba(255, 255, 255, 0.5);
+				padding: 20px;
+				border-radius: 5px;
+				z-index: 50;
+			}
+
+			.progress{
+				position: absolute;
+				bottom: 10%;
+				right: 30%;
+				width: 40%;
+				max-width: 15cm;
+				padding: 3px;
+				border-radius: 5px;
+			}
+			.progressTitle{
+				position: absolute;
+				bottom: 15%;
+				right: 30%;
+				width: 40%;
+				max-width: 15cm;
+			}
+
+			.helper-overlay h2 {
+				margin: 0;
+			}
+
+			.centered-table th {
+				text-align: center;
+			}
+
+			.centered-table td {
+				text-align: center;
+			}
+			.hide-cursor {
+				cursor: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="drivesim" class="fillScreen"></div>
+	</body>
+</html>
