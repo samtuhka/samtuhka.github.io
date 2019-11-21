@@ -198,9 +198,9 @@ export addGround = (scene) ->
 roadLoader = (k, terrainSize, turn, euler = false) ->
 	x = require('./road_x.json') 
 	y = require('./road_y.json')
-	if euler 
-		x = require('./road_euler_x.json') 
-		y = require('./road_euler_y.json')
+	#if euler 
+	#	x = require('./road_euler_x.json') 
+	#	y = require('./road_euler_y.json')
 	vectors = []
 	path = new THREE.CurvePath()
 	for i from 0 til x.length - 1

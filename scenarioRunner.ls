@@ -116,12 +116,10 @@ export newEnv = seqr.bind !->*
 		onSize: onSize
 		opts: opts
 
-	if not opts.disableDefaultLogger
-		env.logger = yield getLogger!
-	else
-		env.logger =
-			write: ->
-			close: ->
+
+	env.logger =
+		write: ->
+		close: ->
 	if opts.wsLogger?
 		env.logger = yield wsLogger opts.wsLogger
 	@finally ->

@@ -913,7 +913,7 @@ export basecircleDriving = seqr.bind (env, params) ->*
 	#scene.onRender.add (dt) ->
 	#	stats.update()
 
-	addBackgroundColor scene
+	#addBackgroundColor scene
 	return scene
 
 onInnerLane = (scene) ->
@@ -1018,7 +1018,7 @@ addFixationCross = (scene, radius = 2.5, c = 0xFF0000, circle = false) ->
 	fixObj = new THREE.Object3D()
 
 	cycles = 18.0
-	size = 0.5
+	size = 1.0
 	uniform = {cycles: { type: "f", value: cycles }, trans: {type: "f", value: 0.0}}
 
 	#texture = new THREE.Texture assets.SineGratingBitmap resolution: 512, cycles: cycles
@@ -1225,7 +1225,7 @@ exportScenario \fixSwitch, (env, {hide=false, turn=-1, n=0}={}) ->*
 	if env.opts.hideRoad
 		hide = true
 	if n == undefined
-		n = 0
+		n = Math.floor(Math.random() * (5))
 
 	order = probeOrder n, turn
 	params = {major_radius: rx, minor_radius: ry, straight_length: l, target_speed: s, direction: 1, duration: 152, updateTime: 0.75, headway: 2.0, targets: 4, probes: order, firstTurn: turn, hide: hide}

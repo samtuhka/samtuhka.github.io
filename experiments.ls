@@ -147,7 +147,7 @@ export blindFollow17 = seqr.bind ->*
 	env.let \destroy
 	yield env
 
-export defaultExperiment = mulsimco2015
+export defaultExperiment = fixSwitch
 
 export freeDriving = seqr.bind ->*
 	yield runScenario scenario.freeDriving
@@ -571,5 +571,5 @@ export circleDriving = seqr.bind ->*
 
 	yield runWithNewEnv scenario.experimentOutro
 
-export defaultExperiment = circleDrivingTrue
+export defaultExperiment = fixSwitch
 
